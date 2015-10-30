@@ -1,4 +1,71 @@
 <?php
+
+/**
+ * Get Chinese address for Baidu Map
+ * Added by Iven at 20:57 28/10/2015
+ *
+ * @param: $kt_addr, shop address
+ * @return: Chinese address
+ *
+ * @author Iven
+ * @since 0.0.0
+ **/
+
+function get_chinese_addr($kt_addr)
+{
+    $chn_addr_pat = '/[(（].+[)）]/u';
+    if (preg_match($chn_addr_pat, $kt_addr, $chn_addr))
+    {
+        // expect "(街道地址,市名)"
+        $chn_addr = $chn_addr[0];
+
+        $dot_pos = strpos($chn_addr, ",");
+        if ($dot_pos === false)
+        {
+            $dot_pos = strpos($chn_addr, "，");
+        }
+
+        if ($dot_pos !== false)
+        {
+            $chn_addr = substr($chn_addr, $dot_pos+1, -1) . substr($chn_addr, 1, $dot_pos-1);
+        }
+        else
+        {
+            $chn_addr = substr($chn_addr, 1, -1);    
+        }
+        
+        return $chn_addr;
+    }
+
+    return '南京市';
+}
+
+
+/**
+ * Get Chinese for Baidu Map 
+ * Added by Iven at 22:44 28/10/2015
+ *
+ * @param 
+ * @return 
+ *
+ * @author Iven
+ * @since 0.0.0
+ **/
+
+function get_chinese($strName)
+{
+    $chn_pat = '/[\x{4e00}-\x{9fa5}]+/u';
+    //if (preg_match_all($chn_pat, $strName, $chinese))
+    if (preg_match($chn_pat, $strName, $chinese))
+    {
+        //return implode($chinese);
+        return $chinese[0];
+    }
+
+    return '';
+}
+
+
 /**
  * Add custom fields rating.
  *
@@ -14,6 +81,49 @@ function kt_custom_comment_fields() {
     for( $i=1; $i <= 5; $i++ )
         echo '<span class="commentrating"><input type="radio" name="rating" id="rating" value="'. $i .'"/>'. $i .'</span>';
     echo '</span></div>';
+
+    // Revised by Iven at 15:26 18/10/2015
+    // try to use WP's media-uploader
+/*
+    wp_enqueue_script('media-upload');
+    wp_enqueue_script('thickbox');
+    wp_enqueue_script('my-upload');
+    wp_enqueue_style('thickbox'); 
+    echo '<input id="upload_image" type="text" value="Image URL" readonly="readonly" />';
+    echo '<input id="upload_image_button" type="button" style="width:auto;height:50px;" value="Upload Image" />';
+    echo '<script>
+    jQuery(document).ready(function() {
+        jQuery("#upload_image_button").click(function() {
+         formfield = jQuery("#upload_image").attr("name");
+         tb_show("", "<?php echo admin_url(); ?>media-upload.php?type=image&amp;TB_iframe=true");
+         return false;
+        });
+        window.send_to_editor = function(html) {
+         imgurl = jQuery("img",html).attr("src");
+         jQuery("#upload_image").val(imgurl);
+         tb_remove();
+        }
+    });
+    </script>';
+ */
+
+    // Revised by Iven at 23:31 19/10/2015
+    // add multi-file uploader by plugin
+/* 
+    $atts = array( 
+        'allowed_mime_types' => 'jpg, jpeg, jpe, gif, png, bmp, tif, tiff, ico',
+        'max_file_size' => 5);
+    wp_multi_file_uploader($atts);
+ */
+
+    // Revised by Iven at 20:40 20/10/2015
+    // add smilies by plugin
+/*
+    if(function_exists('wpml_comment')) 
+    { 
+        wpml_comment(); 
+    } 
+ */
 }
 
 /**

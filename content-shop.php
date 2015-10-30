@@ -95,9 +95,15 @@
 				        <?php _e( 'Tel', 'ikoreatown' ); ?> :
 				        <?php echo $kt_tel; ?>
 				    </li>
-				    <li>
+                    <li>
+                        <?php // Revised by Iven at 21:27 28/10/2015 ?>
 				        <?php _e( '주소', 'ikoreatown' ); ?> :
-				        <?php echo '<address>' . $kt_addr . '</address>'; ?>
+                        <?php //echo '<address>' . $kt_addr . '</address>'; ?>
+                        <?php echo '<a href = "http://api.map.baidu.com/geocoder?address=' 
+                                        . get_chinese_addr($kt_addr) . get_chinese(get_the_title()) 
+                                        . '&output=html&src=iKoreaTown" target="_blank"> <u>'; ?>
+                        <?php echo '<address>' . $kt_addr . '</address>'; ?>
+                        <?php echo '</u> </a>'; ?>
 				    </li>
 				    <li>
 				        <?php _e( '평점', 'ikoreatown' ); ?> :
