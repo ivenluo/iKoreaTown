@@ -77,9 +77,9 @@ add_action( 'comment_form_logged_in_after', 'kt_custom_comment_fields' );
 
 function kt_custom_comment_fields() {
     echo '<div class="comment-meta-box">';
-    echo '<div class="comment-form-rating">' . '<label for="rating">'. __('Rating: ') . '<span class="required">*</span></label><span class="commentratingbox">';
+    echo '<div class="comment-form-rating">' . '<label for="rating">'. __( 'Rating: ', 'ikoreatown' ) . '<span class="required">*  </span></label><span class="star-rating">';
     for( $i=1; $i <= 5; $i++ )
-        echo '<span class="commentrating"><input type="radio" name="rating" id="rating" value="'. $i .'"/>'. $i .'</span>';
+        echo '<input type="radio" name="rating" value="'. $i .'"/>'. '<i></i>';
     echo '</span></div>';
 
     // Revised by Iven at 15:26 18/10/2015
@@ -282,6 +282,7 @@ function kt_user_reviews_list_callback( $comment, $args, $depth ) {
                         <li> <?php echo  $item->name; ?> </li>
                     <?php } ?>
                 </ul>
+                <?php edit_comment_link(); ?>
             </div>
 
         </header><!-- .comment-meta -->
@@ -300,7 +301,7 @@ function kt_user_reviews_list_callback( $comment, $args, $depth ) {
                 </section>
             <?php comment_text(); ?>
             <footer>
-                <?php edit_comment_link(); ?>
+                
                 <?php if ( ! empty( $comment->user_id ) && $comment->user_id == get_current_user_id() ) : ?>
                     <form method="post" action="<?php get_page_link(); ?>">
                         <?php wp_nonce_field( 'kt_update_reviews', 'kt_nonce_field' ) ?>

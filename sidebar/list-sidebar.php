@@ -1,4 +1,4 @@
-<aside class="shop-sidebar">
+<aside class="sidebar list-sidebar">
 	<section class="widget">
 		<h3 class="widget-title font-headlines">
 			<?php echo "카테고리"; ?>

@@ -36,7 +36,13 @@
 		$kt_event = ( ! empty($kt_shop_meta['event']) ) ? $kt_shop_meta['event'] : '';
 		?>
 		<ul>
-			<li> <?php echo '평점: ' . $kt_rating; ?> </li>
+			<li> 
+				<?php echo '평점: ';
+					$integer = round( $kt_rating * 2, 0, PHP_ROUND_HALF_DOWN );
+					$star_class = 'star-' . $integer * 5;
+					echo '<span class="star-rating"><i class="' . $star_class .  '"></i></span>';
+				?> 
+			</li>
 			<?php if ( !empty( $kt_shop_ppp ) ) : ?>
 				<li> <?php echo $kt_shop_ppp; ?>RMB </li>
 			<?php endif ?>

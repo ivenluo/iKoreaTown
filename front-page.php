@@ -8,7 +8,7 @@
     
 get_header(); ?>
 <main <?php hybrid_attr( 'page' ); ?>>
-    
+
 	<div class="featured-box">
 		<header class="entry-header">
 			<h2 <?php hybrid_attr( 'page-title' ); ?>>Featured 맛집/오락</h2>

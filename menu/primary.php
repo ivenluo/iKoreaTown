@@ -14,8 +14,14 @@
 					'menu_class'      => 'menu-items',
 					'fallback_cb'     => '',
 					'items_wrap'      => '<ul id="%s" class="%s">%s</ul>'
-			)
-			); ?>
+				)
+			); 
+
+			$pages = array( 
+				'edit-profile',
+				'user-reviews',
+				'shop-bookmarks'
+				);?>
 		
 			<div class="nav-tools">
 				<?php //get_search_form();
@@ -25,10 +31,11 @@
 					<?php $button .= '<li><a id="logged-in" href="' . home_url() . '/edit-profile' . '">' . $current_user->display_name . ' 님</a></li>'; ?>
 					<div id="login-panel">
 						<ul>
-							<li><a href="<?php echo home_url() . '/edit-profile'; ?>">Edit Profile</a></li>
-							<li><a href="<?php echo home_url() . '/user-reviews'; ?>">User Reviews</a></li>
-							<li><a href="<?php echo home_url() . '/shop-bookmarks'; ?>">Shop Bookmarks</a></li>
-							<li><a href="<?php echo wp_logout_url( get_permalink() ); ?>">Log out</a></li>
+							<?php foreach( $pages as $page) { ?>
+								<?php $page_obj = get_page_by_title( $page ); ?>
+								<li><a href="<?php echo $page_obj->guid; ?>"><?php echo $page; ?></a></li>
+							<?php } ?>
+							<li><a href="<?php echo wp_logout_url( home_url() ); ?>">Log out</a></li>
 						</ul>	
 					</div>
 				<?php else: ?>

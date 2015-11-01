@@ -41,7 +41,7 @@ if( ! function_exists( 'kt_related_shop' ) ) {
               <li>
   		          <a href="<?php the_permalink(); ?>">
   		            <figure>
-  			           <?php the_post_thumbnail( 'medium' ) ?>
+  			           <?php the_post_thumbnail( 'thumbnail' ) ?>
   			             <figcaption>
   			               <?php the_title(); ?>
   			             </figcaption>

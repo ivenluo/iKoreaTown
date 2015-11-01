@@ -8,6 +8,10 @@
 
 @import url ('../stargazer/style.css');
 
+address {
+    display: inline;
+}
+
 ul {
     list-style: none;
     margin: 0;
@@ -116,12 +120,6 @@ input[type="button"] {
     display: inline;
 }
 /*--------------------end of search form--------------------*/
-
-/*--------------------footer--------------------*/
-.entry-footer p {
-    text-align: right;
-}
-/*--------------------end of footer--------------------*/
 
 /*--------------------category list--------------------*/
 .shop-thumbnail img {
@@ -309,18 +307,28 @@ div.list-filter {
 /*--------------------end of category list--------------------*/
 
 /*--------------------sidebar--------------------*/
-.shop-sidebar {
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar .avatar {
+    float: none;
+}
+
+.list-sidebar {
     margin: 0;
     padding: 0;
     font-size: small;
 }
 
-.shop-sidebar .widget ul {
+.sidebar .widget ul ,{
     margin: 0;
     padding: 0;
 }
 
-.shop-sidebar .widget ul li {
+.list-sidebar .widget ul li {
     margin: 10px 40px;
     padding: 10px 10px;
     line-height: 1.2rem;
@@ -330,15 +338,15 @@ div.list-filter {
     border-radius: 5px;
 }
 
-.shop-sidebar .widget ul li a {
+.list-sidebar .widget ul li a {
     padding: 5px 10px;
 }
 
-.shop-sidebar .widget ul li.selected {
+.list-sidebar .widget ul li.selected {
     background-color: #ff0000;
 }
 
-.shop-sidebar .widget ul li.selected a {
+.list-sidebar .widget ul li.selected a {
     color: white;
 }
 
@@ -348,22 +356,27 @@ div.list-filter {
 }
 
 #related-shops li {
+    padding: 0 20px;
     text-align: center;
+    font-size: small;
 }
 
-#sidebar-primary {
-    width: 24%;
+#related-shops figure {
+    padding: 10px 0;
+    width: 160px;
 }
 
-.sidebar {
-    margin: 0;
-    padding: 0;
-    border: 1px solid #e3e3e3;
-    background-color: #f3f3f3;
+#related-shops figure figcaption {
+    background-color: #eee;
 }
 
-.sidebar .avatar {
-    float: none;
+button.unbookmark {
+    background-color: #eeeeee;
+    color: #ff0000;
+}
+
+button.unbookmark:hover {
+    color: #ffffff;
 }
 
 /*--------------------end of sidebar--------------------*/
@@ -374,16 +387,157 @@ div.list-filter {
     padding: 0 10px;
 }
 
-.entry-content p {
-    margin: 0 0 1.5rem;
+.entry-content {
+    margin-top: 20px;
+    font-size: medium;
+}
+
+.entry-content a {
+    border: 0;
+}
+
+.entry-content .extra-box .widget-title {
+    margin-bottom: 10px;
+}
+
+.entry-content .extra-box {
+    margin: 20px auto;
+}
+
+.entry-content p, .entry-content ul {
+    margin: 0;
     background-color: #f9f9f9;
     padding: 10px 30px;
     border: 1px solid #e3e3e3;
     border-radius: 5px;
 }
 
-/*--------------------end of shop page--------------------*/
+.entry-content .gallery {
+    margin: 20px auto 0;
+}
 
+.entry-footer {
+    background-color: #f9f9f9;
+    overflow: auto;
+    text-align: right;
+}
+
+.entry-footer .footer-left {
+    float: left;
+}
+
+.entry-footer .footer-right {
+    float: right;
+}
+
+.comment-content {
+    border-radius: 6px;
+    font-size: medium;
+}
+
+.comment-meta {
+    margin-bottom: 0;
+}
+
+.star-rating {
+    font-size: 0;
+    white-space: nowrap;
+    display: inline-block;
+    width: 100px;
+    height: 20px;
+    overflow: hidden;
+    position: relative;
+    background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+    background-size: contain;
+}
+
+.star-rating i {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 20%;
+    z-index: 1;
+    background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+    background-size: contain;
+}
+
+.star-rating i.star-10 {
+    opacity: 1;
+}
+
+.star-rating i.star-15 {
+    opacity: 1;
+    width: 30%
+}
+
+.star-rating i.star-20 {
+    opacity: 1;
+    width: 40%;
+}
+
+.star-rating i.star-25 {
+    opacity: 1;
+    width: 50%;
+}
+
+.star-rating i.star-30 {
+    opacity: 1;
+    width: 60%;
+}
+
+.star-rating i.star-35 {
+    opacity: 1;
+    width: 70%;
+}
+
+.star-rating i.star-40 {
+    opacity: 1;
+    width: 80%;
+}
+
+.star-rating i.star-45 {
+    opacity: 1;
+    width: 90%;
+}
+
+.star-rating i.star-50 {
+    opacity: 1;
+    width: 100%;
+}
+
+.star-rating input {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    opacity: 0;
+    display: inline-block;
+    width: 20%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+    position: relative;
+}
+
+.star-rating input:hover + i,
+.star-rating input:checked + i {
+    opacity: 1;
+}
+.star-rating i ~ i {
+    width: 40%;
+}
+.star-rating i ~ i ~ i {
+    width: 60%;
+}
+.star-rating i ~ i ~ i ~ i {
+    width: 80%;
+}
+.star-rating i ~ i ~ i ~ i ~ i {
+    width: 100%;
+}
+
+/*--------------------end of shop page--------------------*/
 
 /*--------------------front-page--------------------*/
 
@@ -519,7 +673,7 @@ div.list-filter {
         min-width: 74%;
     }
     
-    .shop-sidebar {
+    .sidebar {
         width: 24%;
         float: right;
     }
@@ -528,15 +682,9 @@ div.list-filter {
         min-width: 74%;
     }
 
-    .sidebar {
-        width: 24%;
-    }
 }
 
 @media only screen and ( min-width: 700px ) and ( max-width: 950px ) {
-    
-    
-
 }
 
 @media only screen and ( min-width: 700px ) {
@@ -548,14 +696,7 @@ div.list-filter {
 }
 
 @media only screen and (max-width: 799px) {
-    
-    .shop-sidebar {
-        width: 100%;
-        float: none;
-    }
 }
 
 @media only screen and ( max-width: 481px ) {
-
 }
-*/

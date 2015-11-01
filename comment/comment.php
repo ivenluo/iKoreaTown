@@ -9,7 +9,7 @@
 		</header><!-- .comment-meta -->
 
 		<?php if( $comment_rating = get_comment_meta( get_comment_ID(), 'rating', true ) ) {
-				$comment_rating = '<div class="comment-rating"> Rating: <strong>'. $comment_rating . '</strong></div>'; 
+				$comment_rating = '<div class="comment-star-rating"><span>Rating: </span><span class="star-rating"><i class="star-' . $comment_rating * 10 . '"></i></span></div>';
 				echo $comment_rating;
 		}?>
 

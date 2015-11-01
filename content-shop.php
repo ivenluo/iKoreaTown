@@ -2,7 +2,8 @@
 /**
  * The template used for displaying shop content
  *
- * @since iKoreaTown 1.0
+ * @package iKoreaTown
+ * @since iKoreaTown 0.0.0
  */
 ?>
 
@@ -23,7 +24,7 @@
     $kt_tel = ( ! empty($kt_shop_meta['tel']) ) ? $kt_shop_meta['tel'] : '';
     $kt_addr = ( ! empty($kt_shop_meta['addr']) ) ? $kt_shop_meta['addr'] : '';
 
-    $kt_rating = ( empty( $kt_shop_rating ) ) ? 0 : $kt_shop_rating;
+    $kt_rating = ( empty( $kt_shop_rating ) ) ? 0 : round( $kt_shop_rating, 1 );
     $kt_price_per_person = ( empty( $kt_shop_ppp ) ) ? '' : $kt_shop_ppp;
     
     // More Info
@@ -60,17 +61,18 @@
     <section <?php hybrid_attr( 'entry-content' ); ?>>
 	
 	    <?php if ( ! empty($kt_event) ) : ?>
-			<div class="main-box">
+			<div class="extra-box">
 			    <h3 class="widget-title font-headlines">이벤트</h3>
 			    <?php echo '<p>'. $kt_event. '</p>'; ?>
 			</div>
 	    <?php endif ?>
 	    <?php if ( ! empty( $kt_vip ) ) : ?>
-		    <div class="main-box">
+		    <div class="extra-box">
 				<h3 class="widget-title font-headlines">VIP</h3>
 				<p> <?php echo $kt_vip ?> </p>
 		    </div>
 		<?php endif ?>
+		
 		<div class="tabbedPanels">
 		    <ul>
 				<li><a href="#basic-info">기본정보</a></li>
@@ -106,9 +108,12 @@
                         <?php echo '</u> </a>'; ?>
 				    </li>
 				    <li>
-				        <?php _e( '평점', 'ikoreatown' ); ?> :
-						<?php echo $kt_rating; ?>
-						
+				        <?php _e( '평점', 'ikoreatown' ); ?> : 
+						<?php 
+						$integer = round( $kt_rating * 2, 0, PHP_ROUND_HALF_DOWN );
+						$star_class = 'star-' . $integer * 5;
+						echo '<span class="star-rating"><i class="' . $star_class .  '"></i></span>';
+						?>
 				    </li>
 				    <li>
 				    	<?php _e( '평가수', 'ikoreatown' ); ?> :
@@ -199,21 +204,27 @@
 			<?php endif ?>
 
 		</div> <!-- .tabbedPanels -->
+		
     </section><!-- .entry-content -->
     
     <footer class="entry-footer">
-    	<span>
+    	<div class="footer-left">
     		<?php if ( is_user_logged_in() ) : ?>
-    			<button id="bookmark" rel="<?php echo $post->ID; ?>">Bookmark</button>
-    			<button rel="<?php echo $post->ID; ?>">Report</button>
+    			<?php $current_user_id = get_current_user_ID(); ?>
+    			<?php $bookmarks = get_user_meta( $current_user_id, '_kt_user_bookmark', FALSE ); ?>
+    			<?php if ( ! empty( $bookmarks ) && in_array( $post->ID, $bookmarks ) ) : ?>
+    				<button id="bookmark" rel="<?php echo $post->ID; ?>">Bookmark</button>
+    			<?php else : ?>
+    				<button id="bookmark" class="unbookmark" rel="<?php echo $post->ID; ?>">Bookmark</button>
+    			<?php endif ?>
     		<?php else : ?>
-    			<a href="<?php echo wp_login_url( get_permalink() ); ?>"><button>Bookmark</button></a>
+    			<a href="<?php echo wp_login_url( get_permalink() ); ?>"><button>Login to Bookmark</button></a>
     		<?php endif ?>
-    	</span>
-		<span>
-	    	<?php echo __( 'Updated', 'ikoreatown' );
+    	</div>
+		<div class="footer-right">
+	    	<?php echo __( 'Updated ', 'ikoreatown' );
 	    	print_r( get_the_modified_date() ); ?>
-		</span>
+		</div>
     </footer><!-- .entry-footer -->
     
 </article><!-- .entry -->

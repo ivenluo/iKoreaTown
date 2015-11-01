@@ -3,7 +3,7 @@
     //$location_category = get_the_terms( $post->ID, 'location_category' );
     ?>
 	
-    <aside class="shop-sidebar">    
+    <aside class="sidebar shop-sidebar">    
 	    <section class="widget">
             <h3 class="widget-title font-headlines">
                         <?php echo "다른 ". $shop_category[0]->name ." 찾으세요?"; ?>

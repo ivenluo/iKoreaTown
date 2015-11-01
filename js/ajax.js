@@ -7,6 +7,7 @@
 
 		$( '#bookmark' ).click( function() {
 			var post_id = $( this ).attr( 'rel' );
+			$( this ).toggleClass( 'unbookmark' );
 			
 			if ( kt_ajax_objects.ajaxurl != '') {
 				jQuery.ajax({

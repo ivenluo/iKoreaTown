@@ -13,7 +13,7 @@
 		// Login Panel for logged-in user
 		$( '#logged-in' ).click( function( event ) {
             event.preventDefault();
-            $( '#login-panel' ).slideToggle(100);
+            $( '#login-panel' ).slideToggle( 100 );
     	});
     	
 	});
