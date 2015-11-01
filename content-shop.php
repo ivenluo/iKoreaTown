@@ -24,7 +24,7 @@
     $kt_tel = ( ! empty($kt_shop_meta['tel']) ) ? $kt_shop_meta['tel'] : '';
     $kt_addr = ( ! empty($kt_shop_meta['addr']) ) ? $kt_shop_meta['addr'] : '';
 
-    $kt_rating = ( empty( $kt_shop_rating ) ) ? 0 : round( $kt_shop_rating, 1 );
+    $kt_rating = ( empty( $kt_shop_rating ) ) ? 0 : $kt_shop_rating;
     $kt_price_per_person = ( empty( $kt_shop_ppp ) ) ? '' : $kt_shop_ppp;
     
     // More Info
