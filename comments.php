@@ -30,6 +30,21 @@ if ( post_password_required() || ( !have_comments() && !comments_open() && !ping
 
 	<?php locate_template( array( 'misc/comments-error.php' ), true ); // Loads the misc/comments-error.php template. ?>
 
-	<?php comment_form(); // Loads the comment form. ?>
+    <?php // Revised by Iven at 21:40 22/10/2015 ?>
+    <?php //comment_form(); // Loads the comment form. ?>
+    <?php 
+        // add images uploader and smilies for comment
+        $image_upload_atts = array(
+            'allowed_mime_types' => 'jpg, jpeg, jpe, gif, png, bmp, tif, tiff, ico',
+            'max_file_size' => 5 );
+        $comnts_field_arg = array(
+            'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label>' .
+                                get_wpml_comment() .
+                                '<textarea id="comment" name="comment" cols="45" rows="8" aria-required="true">' .
+                                '</textarea></p>',
+            'comment_notes_after' => wp_multi_file_uploader_shortcode($image_upload_atts) );            
+
+        comment_form($comnts_field_arg);
+    ?>
 
 </section><!-- #comments-template -->
