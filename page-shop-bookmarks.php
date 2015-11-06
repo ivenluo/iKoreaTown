@@ -51,7 +51,7 @@ get_header(); ?>
                         <div class="shop-box">
                             <a href="<?php echo the_permalink(); ?>">
                                 <figure>
-                                    <?php echo the_post_thumbnail(); ?>
+                                    <?php echo the_post_thumbnail( 'thumbnail' ); ?>
                                     <figcaption>
                                         <ul>
                                             <?php echo the_title(); ?>
@@ -103,5 +103,5 @@ get_header(); ?>
     <?php endif ?>
 </main>
 
-<?php hybrid_get_sidebar( 'user-sidebar' ); ?>
+<?php hybrid_get_sidebar( 'primary' ); ?>
 <?php get_footer(); // Loads the footer.php template. ?>

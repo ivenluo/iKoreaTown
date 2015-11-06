@@ -1,72 +1,6 @@
 <?php
 
 /**
- * Get Chinese address for Baidu Map
- * Added by Iven at 20:57 28/10/2015
- *
- * @param: $kt_addr, shop address
- * @return: Chinese address
- *
- * @author Iven
- * @since 0.0.0
- **/
-
-function get_chinese_addr($kt_addr)
-{
-    $chn_addr_pat = '/[(（].+[)）]/u';
-    if (preg_match($chn_addr_pat, $kt_addr, $chn_addr))
-    {
-        // expect "(街道地址,市名)"
-        $chn_addr = $chn_addr[0];
-
-        $dot_pos = strpos($chn_addr, ",");
-        if ($dot_pos === false)
-        {
-            $dot_pos = strpos($chn_addr, "，");
-        }
-
-        if ($dot_pos !== false)
-        {
-            $chn_addr = substr($chn_addr, $dot_pos+1, -1) . substr($chn_addr, 1, $dot_pos-1);
-        }
-        else
-        {
-            $chn_addr = substr($chn_addr, 1, -1);    
-        }
-        
-        return $chn_addr;
-    }
-
-    return '南京市';
-}
-
-
-/**
- * Get Chinese for Baidu Map 
- * Added by Iven at 22:44 28/10/2015
- *
- * @param 
- * @return 
- *
- * @author Iven
- * @since 0.0.0
- **/
-
-function get_chinese($strName)
-{
-    $chn_pat = '/[\x{4e00}-\x{9fa5}]+/u';
-    //if (preg_match_all($chn_pat, $strName, $chinese))
-    if (preg_match($chn_pat, $strName, $chinese))
-    {
-        //return implode($chinese);
-        return $chinese[0];
-    }
-
-    return '';
-}
-
-
-/**
  * Add custom fields rating.
  *
  * @since 0.0.0
@@ -176,8 +110,6 @@ function kt_recalculate_comment_meta_rating( $comment ) {
             update_post_meta( $post_id, '_kt_shop_rating', 0 );
         }
     }
-
-
 }
 
 /**

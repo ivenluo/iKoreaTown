@@ -18,7 +18,6 @@
 			); 
 
 			$pages = array( 
-				'edit-profile',
 				'user-reviews',
 				'shop-bookmarks'
 				);?>
@@ -28,9 +27,10 @@
 				$button = '<ul>';
 				if ( is_user_logged_in() ) : ?>
 					<?php $current_user = wp_get_current_user(); ?>
-					<?php $button .= '<li><a id="logged-in" href="' . home_url() . '/edit-profile' . '">' . $current_user->display_name . ' 님</a></li>'; ?>
+					<?php $button .= '<li><a id="logged-in" href="' . home_url() . '/member/' . $current_user->user_login . '">' . $current_user->display_name . ' 님</a></li>'; ?>
 					<div id="login-panel">
 						<ul>
+							<li><a href="<?php echo home_url() . '/members/' . $current_user->user_login; ?>">Profile</a></li>
 							<?php foreach( $pages as $page) { ?>
 								<?php $page_obj = get_page_by_title( $page ); ?>
 								<li><a href="<?php echo $page_obj->guid; ?>"><?php echo $page; ?></a></li>

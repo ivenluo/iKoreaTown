@@ -61,7 +61,7 @@
 	
 	<?php if ( ! empty( $kt_event ) ) : ?>
 		<div class="list-event">
-			<img src="<?php bloginfo( 'stylesheet_directory' ); ?>/img/sale20.jpg" alt="Discount 20%">
+			<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/sale20.jpg" alt="Discount 20%">
 		</div><!-- .entry-footer -->
 	<?php endif; ?>
 </article><!-- #post-## -->

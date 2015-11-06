@@ -16,8 +16,6 @@ get_header(); ?>
 		</header><!-- .page-header -->
 	
 		<?php 
-			//$current_url = set_url_scheme( 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
-	    	$current_url = html_entity_decode( get_pagenum_link() );
 	    	$url_parts = explode( '?', $current_url );
 	    	$orderby = array( 
 	    		'popularity' => 'unselected',
@@ -146,10 +144,15 @@ get_header(); ?>
     	}
 
         // Start the Loop.
-        while ( have_posts() ) : the_post();
-            get_template_part( 'content', 'list' );
-        // End the Loop.
-        endwhile;
+        if ( have_posts()) {
+        	while ( have_posts() ) : the_post();
+	            get_template_part( 'content', 'list' );
+	        // End the Loop.
+	        endwhile;
+        } else {
+        	get_template_part( 'content', 'none' );
+        }
+        
                 
 	   	//locate_template( array( 'misc/loop-nav.php' ), true ); // Loads the misc/loop-nav.php template.
 	   	if ( function_exists( 'wp_pagenavi' )) 

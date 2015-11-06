@@ -8,6 +8,11 @@
 
 @import url ('../stargazer/style.css');
 
+body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
 address {
     display: inline;
 }
@@ -36,15 +41,22 @@ figure figcaption {
 }
 
 button, 
-input[type='submit'],
-input[type="reset"],
-input[type="button"] {
+input,
+textarea {
     border-radius: 5px !important;
-    box-shadow: 1px 1px 1px 1px #888;
+}
+
+#container {
+    height: auto !important;    /* real browsers */
+    height: 100%;   /* IE6: treaded as min-height*/
+    min-height: 100%;   /* real browsers */
 }
 
 #main {
     padding-top: 20px;
+    height: auto !important;    /* real browsers */
+    height: 100%;   /* IE6: treaded as min-height*/
+    min-height: 100%;   /* real browsers */
 }
 
 .custom-background #container > .wrap {
@@ -308,9 +320,14 @@ div.list-filter {
 
 /*--------------------sidebar--------------------*/
 
+#sidebar-primary {
+    width: 24%;
+}
+
 .sidebar {
     margin: 0;
     padding: 0;
+    width: 24%;
 }
 
 .sidebar .avatar {
@@ -404,7 +421,8 @@ button.unbookmark:hover {
     margin: 20px auto;
 }
 
-.entry-content p, .entry-content ul {
+.entry-content .panel-box p, 
+.entry-content .panel-box ul {
     margin: 0;
     background-color: #f9f9f9;
     padding: 10px 30px;
@@ -437,6 +455,7 @@ button.unbookmark:hover {
 
 .comment-meta {
     margin-bottom: 0;
+    overflow: auto;
 }
 
 .star-rating {

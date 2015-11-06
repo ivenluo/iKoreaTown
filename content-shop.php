@@ -83,11 +83,11 @@
 				<?php endif ?>
 		    </ul>
 		
-		    <div id="basic-info">
+		    <div id="basic-info" class="panel-box">
 				<ul>
 				    <li>
 						<?php _e( '카테고리', 'ikoreatown' ); ?> :
-						<?php echo $shop_category[0]->name; ?> 
+						<?php echo $shop_category[0]->name; ?>
 				    </li>
 				    <li>
 				        <?php _e( '구역', 'ikoreatown' ); ?> :
@@ -109,7 +109,7 @@
 				    </li>
 				    <li>
 				        <?php _e( '평점', 'ikoreatown' ); ?> : 
-						<?php 
+						<?php echo '<span>' . $kt_rating . ' </span>';
 						$integer = round( $kt_rating * 2, 0, PHP_ROUND_HALF_DOWN );
 						$star_class = 'star-' . $integer * 5;
 						echo '<span class="star-rating"><i class="' . $star_class .  '"></i></span>';
@@ -128,7 +128,7 @@
 				</ul>
 		    </div> <!-- .basic-info -->
 		    
-		    <div id="more-info">
+		    <div id="more-info" class="panel-box">
 				<ul>
 				    <?php if ( ! empty( $kt_email ) ) : ?>
 				        <li>
@@ -193,12 +193,12 @@
 				</ul> 
 		    </div> <!-- #more-info -->
 
-		    <div id="content-box">
+		    <div id="content-box" class="panel-box">
 		    	<?php the_content(); ?>
 		    </div> <!-- #content-box" -->
 
 		    <?php if ( ! empty( $kt_price ) ) : ?>
-			    <div id="price-box">
+			    <div id="price-box" class="panel-box">
 			    	<?php echo '<p>' . $kt_price . '</p>'; ?>
 			    </div>
 			<?php endif ?>

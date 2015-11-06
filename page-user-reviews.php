@@ -37,15 +37,21 @@ get_header(); ?>
             );
             $comments = get_comments( $args );?>
 
-            <ul start="<?php echo $comments_per_page * $page - $comments_per_page + 1 ?>">
-                <?php wp_list_comments( array (
-                    'style' => 'ul',
-                    'per_page' => $comments_per_page,
-                    'page' => $page,
-                    'reverse_top_level' => false,
-                    'callback' => 'kt_user_reviews_list_callback'
-                ), $comments ); ?>
-            </ul>
+            <?php if ( ! empty( $comments )) : ?>
+                <ul start="<?php echo $comments_per_page * $page - $comments_per_page + 1 ?>">
+                    <?php wp_list_comments( array (
+                        'style' => 'ul',
+                        'per_page' => $comments_per_page,
+                        'page' => $page,
+                        'reverse_top_level' => false,
+                        'callback' => 'kt_user_reviews_list_callback'
+                    ), $comments ); ?>
+                </ul>
+            <?php else : ?>
+                <p>
+                    These isn't any review you added.
+                </p>
+            <?php endif ?>
 
             <?php # Now you can either use paginate_comments_links ... ?>
             <?php paginate_comments_links(); ?>
@@ -56,5 +62,5 @@ get_header(); ?>
 
 </main>
 
-<?php hybrid_get_sidebar( 'user-sidebar' ); ?>
+<?php hybrid_get_sidebar( 'primary' ); ?>
 <?php get_footer(); // Loads the footer.php template. ?>
